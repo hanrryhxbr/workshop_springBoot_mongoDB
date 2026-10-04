@@ -2,11 +2,12 @@ package com.romeryto.workshopmongodb.dto;
 
 import com.romeryto.workshopmongodb.domain.User;
 
+import java.io.Serial;
 import java.io.Serializable;
-import java.util.Objects;
 
 public class UserDTO implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private String id;
