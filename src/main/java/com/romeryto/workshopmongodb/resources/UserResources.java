@@ -1,6 +1,7 @@
 package com.romeryto.workshopmongodb.resources;
 
 import com.romeryto.workshopmongodb.domain.User;
+import com.romeryto.workshopmongodb.dto.UserDTO;
 import com.romeryto.workshopmongodb.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,8 +18,9 @@ public class UserResources {
     private UserService service;
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll() {
+    public ResponseEntity<List<UserDTO>> findAll() {
         List<User> list = service.findAll();
-        return ResponseEntity.ok().body(list);
+        List<UserDTO> listDto = list.stream().map(UserDTO::new).toList();
+        return ResponseEntity.ok().body(listDto);
     }
 }
