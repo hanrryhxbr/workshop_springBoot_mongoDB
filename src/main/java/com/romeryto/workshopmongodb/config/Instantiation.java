@@ -3,6 +3,7 @@ package com.romeryto.workshopmongodb.config;
 import com.romeryto.workshopmongodb.domain.Post;
 import com.romeryto.workshopmongodb.domain.User;
 import com.romeryto.workshopmongodb.dto.AuthorDTO;
+import com.romeryto.workshopmongodb.dto.CommentDTO;
 import com.romeryto.workshopmongodb.repository.PostRepository;
 import com.romeryto.workshopmongodb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,18 @@ public class Instantiation implements CommandLineRunner {
                 "Vou viajar para São Pualo. Abraços!", new AuthorDTO(maria));
         Post post2 = new Post(null, LocalDate.parse("23/03/2026", dtf), "Bom dia",
                 "Acordei feliz hoje!", new AuthorDTO(maria));
+
+        CommentDTO c1 = new CommentDTO("Boa viagem, mano!", LocalDate.parse("21/03/2026", dtf),
+                new AuthorDTO(alex));
+        CommentDTO c2 = new CommentDTO("Aproveite", LocalDate.parse("22/03/2026", dtf),
+                new AuthorDTO(bob));
+        CommentDTO c3 = new CommentDTO("tenha um ótimo dia!", LocalDate.parse("21/03/2026", dtf),
+                new AuthorDTO(alex));
+
+        post1.getComments().addAll(Arrays.asList(c1, c1));
+        post2.getComments().add(c3);
+
+
 
         postRepository.saveAll(Arrays.asList(post1, post2));
 
